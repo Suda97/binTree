@@ -9,6 +9,7 @@ class binTree:
     def __init__(self):
         self.root = None
 
+    # linear adding to tree
     def addNewNode(self, data):
         if self.root is None:
             self.root = node(data)
@@ -37,6 +38,7 @@ class binTree:
                 print(f"Val ({data}) added to bin tree")
                 return
 
+    # recursive printing of tree in order
     def inOrder(self, nod):
         if nod is None:
             return
@@ -45,6 +47,7 @@ class binTree:
         print(nod.data, end=' ')
         self.inOrder(nod.right)
 
+    # recursive adding to tree
     def recAddNode(self, data, nod=None):
         if self.root is None:
             self.root = node(data)

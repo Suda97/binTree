@@ -13,7 +13,6 @@ class binTree:
     def addNewNode(self, data):
         if self.root is None:
             self.root = node(data)
-            print(f"Val ({data}) added to bin tree")
 
         else:
             pNode = self.root
@@ -31,11 +30,9 @@ class binTree:
 
             if data < bNode.data:
                 bNode.left = node(data)
-                print(f"Val ({data}) added to bin tree")
                 return
             elif data > bNode.data:
                 bNode.right = node(data)
-                print(f"Val ({data}) added to bin tree")
                 return
 
     # recursive printing of tree in order
@@ -51,7 +48,6 @@ class binTree:
     def recAddNode(self, data, nod=None):
         if self.root is None:
             self.root = node(data)
-            print(f"Val ({data}) added to bin tree")
             return
 
         elif nod is None:
@@ -60,7 +56,6 @@ class binTree:
         if data < nod.data:
             if nod.left is None:
                 nod.left = node(data)
-                print(f"Val ({data}) added to bin tree")
                 return
 
             self.recAddNode(data, nod.left)
@@ -68,7 +63,6 @@ class binTree:
         if data > nod.data:
             if nod.right is None:
                 nod.right = node(data)
-                print(f"Val ({data}) added to bin tree")
                 return
 
             self.recAddNode(data, nod.right)
@@ -76,11 +70,36 @@ class binTree:
         if data == nod.data:
             print(f"Val ({data}) already in bin tree")
 
+    def recInvert(self, nod):
+        if nod is None:
+            return
+
+        self.recInvert(nod.left)
+        self.recInvert(nod.right)
+
+        tmp = nod.left
+        nod.left = nod.right
+        nod.right = tmp
+
+    def height(self, nod):
+        if nod is None:
+            return 0
+
+        leftHeight = self.height(nod.left)
+        rightHeight = self.height(nod.right)
+
+        return max(leftHeight, rightHeight) + 1
+
 
 if __name__ == '__main__':
     tree = binTree()
+    arr = [10, 2, 13, 1, 5, 12, 14, 0, 11, 23]
 
-    for i in range(10):
-        tree.recAddNode(int(input()))
+    for i in arr:
+        tree.recAddNode(i)
 
     tree.inOrder(tree.root)
+    print("")
+    tree.recInvert(tree.root)
+    tree.inOrder(tree.root)
+    print(f"\nHeight of tree: {tree.height(tree.root)}")

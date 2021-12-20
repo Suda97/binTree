@@ -35,15 +35,6 @@ class binTree:
                 bNode.right = node(data)
                 return
 
-    # recursive printing of tree in order
-    def inOrder(self, nod):
-        if nod is None:
-            return
-
-        self.inOrder(nod.left)
-        print(nod.data, end=' ')
-        self.inOrder(nod.right)
-
     # recursive adding to tree
     def recAddNode(self, data, nod=None):
         if self.root is None:
@@ -90,6 +81,36 @@ class binTree:
 
         return max(leftHeight, rightHeight) + 1
 
+    # recursive printing of tree in order
+    def inOrder(self, nod):
+        if nod is None:
+            return
+
+        self.inOrder(nod.left)
+        print(nod.data, end=' ')
+        self.inOrder(nod.right)
+        return
+
+    # recursive printing of tree pre order
+    def preOrder(self, nod):
+        if nod is None:
+            return
+
+        print(nod.data, end=' ')
+        self.preOrder(nod.left)
+        self.preOrder(nod.right)
+        return
+
+    # recursive printing of three
+    def postOrder(self, nod):
+        if nod is None:
+            return
+
+        self.postOrder(nod.left)
+        self.postOrder(nod.right)
+        print(nod.data, end=' ')
+        return
+
 
 if __name__ == '__main__':
     tree = binTree()
@@ -98,8 +119,17 @@ if __name__ == '__main__':
     for i in arr:
         tree.recAddNode(i)
 
+    print(f"In order:", end=' ')
     tree.inOrder(tree.root)
-    print("")
+
+    print(f"\nPre order:", end=' ')
+    tree.preOrder(tree.root)
+
+    print(f"\nPost order:", end=' ')
+    tree.postOrder(tree.root)
+
     tree.recInvert(tree.root)
+    print(f"\nInverted/Mirrored (in order):", end=' ')
     tree.inOrder(tree.root)
+
     print(f"\nHeight of tree: {tree.height(tree.root)}")

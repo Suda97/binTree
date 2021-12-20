@@ -81,7 +81,7 @@ class binTree:
 
         return max(leftHeight, rightHeight) + 1
 
-    # recursive printing of tree in order
+    # recursive printing of tree in-order
     def inOrder(self, nod):
         if nod is None:
             return
@@ -91,7 +91,7 @@ class binTree:
         self.inOrder(nod.right)
         return
 
-    # recursive printing of tree pre order
+    # recursive printing of tree pre-order
     def preOrder(self, nod):
         if nod is None:
             return
@@ -101,7 +101,7 @@ class binTree:
         self.preOrder(nod.right)
         return
 
-    # recursive printing of three
+    # recursive printing of tree post-order
     def postOrder(self, nod):
         if nod is None:
             return
